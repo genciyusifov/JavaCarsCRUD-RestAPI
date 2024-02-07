@@ -3,6 +3,8 @@ package com.example.springtest.controller;
 import com.example.springtest.model.Car;
 import com.example.springtest.service.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public  class CarController<car> {
         return carService.getAllCars();
     }
     @PostMapping("/cars")
-    public Car createCar(@RequestBody Car car){
-        return carService.createCar(car);
+    public ResponseEntity<Car> createCar(@RequestBody Car car){
+        return new ResponseEntity<>(carService.createCar(car), HttpStatus.CREATED);
     }
 
 
